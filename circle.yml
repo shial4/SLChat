@@ -1,0 +1,7 @@
+test:
+  override:
+    - swift build
+    - swift build -c release
+    - swift test
+  post:
+    - bash <(curl -s https://codecov.io/bash)

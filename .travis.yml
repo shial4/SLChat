@@ -1,0 +1,12 @@
+os:
+    - osx
+    - linux
+language: swift
+osx_image: xcode8.3
+
+script:
+    - swift build -c release
+    - swift test
+
+after_success:
+    - eval "$(curl -sL https://codecov.io/bash)"
