@@ -3,9 +3,9 @@ import XCTest
 @testable import SLChatTests
 
 XCTMain([
-    testCase(testSLClient.allTests),
-     testCase(testSLConnection.allTests),
-     testCase(testSLMessage.allTests),
-     testCase(testSLService.allTests),
+    testCase(SLClientTests.allTests),
+     testCase(SLConnectionTests.allTests),
+     testCase(SLMessageTests.allTests),
+     testCase(SLServiceTests.allTests),
 ])
 #endif
