@@ -9,10 +9,15 @@
 import XCTest
 @testable import SLChat
 
-class testSLClient: XCTestCase {
+class SLClientTests: XCTestCase {
     static let allTests = [
         ("testSLClient", testSLClient),
-        ("testSLClientProtocol", testSLClientProtocol)
+        ("testSLClientSendMessage", testSLClientSendMessage),
+        ("testSLClientStatusMessageDefault", testSLClientStatusMessageDefault),
+        ("testSLClientStatusMessage", testSLClientStatusMessage),
+        ("testSLClientProtocol", testSLClientProtocol),
+        ("testSLClientStatus", testSLClientStatus),
+        ("testSLClientMessage", testSLClientMessage)
     ]
     
     override func setUp() {

@@ -16,27 +16,6 @@ public enum SLMessageCommand: Character {
     case readMessage = "R"
     case stoppedTyping = "S"
     case startedTyping = "T"
-    
-    init(_ command: Character) throws {
-        switch command {
-        case "B":
-            self = .base64Message
-        case "C":
-            self = .connected
-        case "D":
-            self = .disconnected
-        case "M":
-            self = .textMessage
-        case "R":
-            self = .readMessage
-        case "S":
-            self = .stoppedTyping
-        case "T":
-            self = .startedTyping
-        default:
-            throw SLMessageError.unsupportedType
-        }
-    }
 }
 
 enum SLMessageError: Int, Error {
@@ -52,12 +31,13 @@ public struct SLMessage {
     
     init(_ data: String) throws {
         guard data.characters.count > 1 else { throw SLMessageError.badRequest }
-        guard let command = data.characters.first else { throw SLMessageError.unsupportedType }
-        self.command = try SLMessageCommand(command)
+        guard let command = data.characters.first,
+              let messageCommand = SLMessageCommand(rawValue: command) else { throw SLMessageError.unsupportedType }
+        self.command = messageCommand
         let payload = String(data.characters.dropFirst(2))
-        guard let end = data.characters.index(of: "}") else { throw SLMessageError.notAcceptable }
+        guard let end = payload.characters.index(of: "}") else { throw SLMessageError.notAcceptable }
         self.recipients = payload.substring(to: end).components(separatedBy: ";")
-        self.content = payload.substring(from: end)
+        self.content = payload.substring(from: payload.index(after: end))
     }
     
     init(command: SLMessageCommand, recipients: [String]? = nil) {

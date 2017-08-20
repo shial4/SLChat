@@ -9,7 +9,7 @@
 import XCTest
 @testable import SLChat
 
-class testSLService: XCTestCase {
+class SLServiceTests: XCTestCase {
     static let allTests = [
         ("testSLService", testSLService)
     ]

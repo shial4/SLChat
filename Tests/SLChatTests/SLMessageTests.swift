@@ -9,9 +9,21 @@
 import XCTest
 @testable import SLChat
 
-class testSLMessage: XCTestCase {
+class SLMessageTests: XCTestCase {
     static let allTests = [
-        ("testSLMessage", testSLMessage)
+        ("testSLMessage", testSLMessage),
+        ("testSLMessageBadRequest", testSLMessageBadRequest),
+        ("testSLMessageNotAcceptable", testSLMessageNotAcceptable),
+        ("testSLMessageUnsupportedType", testSLMessageUnsupportedType),
+        ("testSLMessageBase64", testSLMessageBase64),
+        ("testSLMessageConnected", testSLMessageConnected),
+        ("testSLMessageDisconnected", testSLMessageDisconnected),
+        ("testSLMessageTextMessage", testSLMessageTextMessage),
+        ("testSLMessageReadMessage", testSLMessageReadMessage),
+        ("testSLMessageStoppedTyping", testSLMessageStoppedTyping),
+        ("testSLMessageStart", testSLMessageStart),
+        ("testSLMessageRecipients", testSLMessageRecipients),
+        ("testSLMessageContent", testSLMessageContent)
     ]
     
     override func setUp() {
@@ -122,6 +134,31 @@ class testSLMessage: XCTestCase {
         do {
             let message = try SLMessage("T{A;B;C}Message")
             XCTAssertTrue(message.command == .startedTyping)
+        } catch {
+            XCTFail()
+        }
+    }
+    
+    func testSLMessageRecipients() {
+        do {
+            let message = try SLMessage("M{A;B;C}Message")
+            guard let recipients = message.recipients else {
+                XCTFail()
+                return
+            }
+            for rec in recipients {
+                print(rec)
+                XCTAssertTrue(["A","B","C"].contains(rec))
+            }
+        } catch {
+            XCTFail()
+        }
+    }
+    
+    func testSLMessageContent() {
+        do {
+            let message = try SLMessage("M{A;B;C}Message")
+            XCTAssertTrue(message.content == "Message")
         } catch {
             XCTFail()
         }

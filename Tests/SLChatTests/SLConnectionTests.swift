@@ -12,9 +12,11 @@ import XCTest
 @testable import KituraNet
 @testable import Socket
 
-class testSLConnection: XCTestCase {
+class SLConnectionTests: XCTestCase {
     static let allTests = [
-        ("testSLConnection", testSLConnection)
+        ("testSLConnection", testSLConnection),
+        ("testSLConnectionAdd", testSLConnectionAdd),
+        ("testSLConnectionRemove", testSLConnectionRemove),
     ]
     
     private var connection: SLConnections = SLConnections()
