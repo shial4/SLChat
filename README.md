@@ -4,17 +4,11 @@
     <a href="http://swift.org">
         <img src="https://img.shields.io/badge/Swift-3.1-brightgreen.svg" alt="Language" />
     </a>
-    <a href="https://raw.githubusercontent.com/shial4/SLChat/master/license">
+    <a href="https://raw.githubusercontent.com/shial4/SLChat/master/LICENSE">
         <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License" />
     </a>
     <a href="https://travis-ci.org/shial4/SLChat">
         <img src="https://travis-ci.org/shial4/SLChat.svg?branch=master" alt="TravisCI" />
-    </a>
-    <a href="https://circleci.com/gh/shial4/SLChat">
-        <img src="https://circleci.com/gh/shial4/SLChat.svg?style=shield" alt="CircleCI" />
-    </a>
-    <a href="https://codecov.io/gh/shial4/SLChat">
-        <img src="https://codecov.io/gh/shial4/SLChat/branch/master/graph/badge.svg" alt="codecov" />
     </a>
     <a href="https://codebeat.co/projects/github-com-shial4-slchat-master">
         <img src="https://codebeat.co/badges/bafbee05-9197-4625-84f8-1e022e3a6dad" alt="codebeat" />
