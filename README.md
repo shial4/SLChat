@@ -11,8 +11,8 @@
         <img src="https://travis-ci.org/shial4/SLChat.svg?branch=master" alt="TravisCI" />
     </a>
     <a href="https://codebeat.co/projects/github-com-shial4-slchat-master">
-        <img src="https://codebeat.co/badges/bafbee05-9197-4625-84f8-1e022e3a6dad" alt="codebeat" />
-    </a>
+        <img alt="codebeat badge" src="https://codebeat.co/badges/bafbee05-9197-4625-84f8-1e022e3a6dad" /></a>
+
 </p>
 
 SLChat is a simple extension for Kitura-WebSocket. Allows you to integrate chat system with your client.
