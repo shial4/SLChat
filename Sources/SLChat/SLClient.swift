@@ -16,7 +16,7 @@ public protocol SLClient {
 }
 
 extension SLClient {
-    static func receivedData(_ message: Data, from: WebSocketConnection) -> Bool { return false }
-    static func sendMessage(_ message: SLMessage, from client: String) { }
-    static func statusMessage(_ command: SLMessageCommand, from client: String) -> [String]? { return nil }
+    public static func receivedData(_ message: Data, from: WebSocketConnection) -> Bool { return false }
+    public static func sendMessage(_ message: SLMessage, from client: String) { }
+    public static func statusMessage(_ command: SLMessageCommand, from client: String) -> [String]? { return nil }
 }

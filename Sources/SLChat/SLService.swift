@@ -12,6 +12,8 @@ import KituraWebSocket
 public class SLService<T: SLClient>: WebSocketService {
     private var connection: SLConnections = SLConnections()
     
+    public init() {}
+    
     public func connected(connection: WebSocketConnection) {
         guard let clientId = connection.request.urlURL.query else {
             inconsonantClient(from: connection, description: "Missing client id")
@@ -44,7 +46,7 @@ public class SLService<T: SLClient>: WebSocketService {
         } catch SLMessageError.unsupportedType {
             inconsonantClient(from: from, description: "Unexpected Data")
         } catch SLMessageError.notAcceptable {
-                inconsonantClient(from: from, description: "Corrupted Data")
+            inconsonantClient(from: from, description: "Corrupted Data")
         } catch let error {
             inconsonantClient(from: from, description: "Something went wrong, error: \(error)")
         }
