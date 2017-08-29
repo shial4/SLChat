@@ -59,10 +59,11 @@ Every function in this protocol is optional. It means `SLClient` provide default
 ```swift
 extension SLClient {
     static func receivedData(_ message: Data, from: WebSocketConnection) -> Bool { return false }
-    static func sendMessage(_ message: SLMessage, from client: String) { }
+    static func sendMessage(_ message: SLMessage, from client: String) -> [String] { return message.recipients }
     static func statusMessage(_ command: SLMessageCommand, from client: String) -> [String]? { return nil }
 }
 ```
+Sending message via `sendMessage` protocol method. Provide `SLMessage` object which hold recipients parsed from socket message. This can be chat room ids or simple client ids to which message should be delivered.
 
 #### SLService
 

@@ -79,15 +79,13 @@ public class SLService<T: SLClient>: WebSocketService {
     }
     
     private func broadcast(from client: String, message: SLMessage) {
-        guard let recipients = message.recipients else { return }
-        connection.exertions({ connections in
-            for (_, (client: clienId, connection: connection)) in connections where recipients.contains(clienId) {
-                connection.send(message: message.make(client))
-            }
-        })
-        
         if message.command == .base64Message || message.command == .textMessage {
-            T.sendMessage(message, from: client)
+            let recipients = T.sendMessage(message, from: client)
+            connection.exertions({ connections in
+                for (_, (client: clienId, connection: connection)) in connections where recipients.contains(clienId) {
+                    connection.send(message: message.make(client))
+                }
+            })
         }
     }
 }
