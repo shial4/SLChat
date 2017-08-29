@@ -35,11 +35,12 @@ public class SLService<T: SLClient>: WebSocketService {
     
     public func received(message: String, from: WebSocketConnection) {
         do {
-            let message = try SLMessage(message)
+            var message = try SLMessage(message)
             guard let clientId = from.request.urlURL.query else {
                 inconsonantClient(from: from, description: "Missing client id")
                 return
             }
+            message.recipients = T.sendMessage(message, from: clientId)
             broadcast(from: clientId, message: message)
         } catch SLMessageError.badRequest {
             inconsonantClient(from: from, description: "Bad data")
@@ -79,13 +80,11 @@ public class SLService<T: SLClient>: WebSocketService {
     }
     
     private func broadcast(from client: String, message: SLMessage) {
-        if message.command == .base64Message || message.command == .textMessage {
-            let recipients = T.sendMessage(message, from: client)
-            connection.exertions({ connections in
-                for (_, (client: clienId, connection: connection)) in connections where recipients.contains(clienId) {
-                    connection.send(message: message.make(client))
-                }
-            })
-        }
+        guard let recipients = message.recipients else { return }
+        connection.exertions({ connections in
+            for (_, (client: clienId, connection: connection)) in connections where recipients.contains(clienId) {
+                connection.send(message: message.make(client))
+            }
+        })
     }
 }
