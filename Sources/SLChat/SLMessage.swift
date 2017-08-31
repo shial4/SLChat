@@ -16,6 +16,15 @@ public enum SLMessageCommand: Character {
     case readMessage = "R"
     case stoppedTyping = "S"
     case startedTyping = "T"
+    
+    func toAll() -> Bool {
+        switch self {
+        case .connected, .disconnected:
+            return true
+        default:
+            return false
+        }
+    }
 }
 
 enum SLMessageError: Int, Error {
@@ -47,6 +56,7 @@ public struct SLMessage {
     }
     
     func make(_ client: String) -> String {
-        return [String(describing: command) + client + content].joined(separator: ";")
+        let recipientString = command.toAll() ? "{}" : "{\(recipients?.joined(separator: ";") ?? "")}"
+        return [String(describing: command),client,recipientString,content].joined(separator: ";")
     }
 }

@@ -65,13 +65,19 @@ extension SLClient {
 ```
 Sending message via `sendMessage` protocol method. Provide `SLMessage` object which hold recipients parsed from socket message. This can be chat room ids or simple client ids to which message should be delivered.
 
+Recipients are strings defined by you. Thanks to that you can identify your target clients to which message should be delivered. They can be simple other clients id or room id.
+
 #### SLService
 
 Is very simple in the way it works. First of all what you should know is:
 Message sent to clinet looks like:
-`M;MESSAGE-OWNER-ID;My message content sent to others`
-First character in this case `M` is the type of message. Followed by client id responsible for sending this message and the last part is message content. All parts joined by `;`
+`M;MESSAGE-OWNER-ID;{MESSAGE-RECIPIENT-ID, CAN_BE_CHAT_ROOM_ID, CAN_BE_OTHER_CLIENT_ID};My message content sent to others`
+First character in this case `M` is the type of message. Followed by client id responsible for sending this message with recipients placed inside `{}` and the last part is message content. All parts joined by `;`
 This message model will be delivered to your client application.
+``
+
+Status messages (connected or disconnected) are different, they simply have empty recipient closure `{}`. If you receive message:
+`C;MESSAGE-OWNER-ID;{};` Simply all clients related with message owner should be notify.
 
 Beside receiving messages, you will send some as well!
 Your message should look like:
