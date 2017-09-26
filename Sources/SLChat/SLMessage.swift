@@ -45,7 +45,7 @@ public struct SLMessage {
         self.command = messageCommand
         let payload = String(data.characters.dropFirst(2))
         guard let end = payload.characters.index(of: "}") else { throw SLMessageError.notAcceptable }
-        self.recipients = payload[..<end].components(separatedBy: ";")
+        self.recipients = String(payload[..<end]).components(separatedBy: ";")
         self.content = String(payload[payload.index(after: end)..<payload.endIndex])
     }
     
