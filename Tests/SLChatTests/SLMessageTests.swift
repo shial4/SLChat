@@ -23,7 +23,8 @@ class SLMessageTests: XCTestCase {
         ("testSLMessageStoppedTyping", testSLMessageStoppedTyping),
         ("testSLMessageStart", testSLMessageStart),
         ("testSLMessageRecipients", testSLMessageRecipients),
-        ("testSLMessageContent", testSLMessageContent)
+        ("testSLMessageContent", testSLMessageContent),
+        ("testSLMessageEmptyContent", testSLMessageEmptyContent)
     ]
     
     override func setUp() {
@@ -159,6 +160,15 @@ class SLMessageTests: XCTestCase {
         do {
             let message = try SLMessage("M{A;B;C}Message")
             XCTAssertTrue(message.content == "Message")
+        } catch {
+            XCTFail()
+        }
+    }
+    
+    func testSLMessageEmptyContent() {
+        do {
+            let message = try SLMessage("M{A;B;C}")
+            XCTAssertTrue(message.content == "")
         } catch {
             XCTFail()
         }
