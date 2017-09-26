@@ -2,7 +2,7 @@
 
 <p align="center">
     <a href="http://swift.org">
-        <img src="https://img.shields.io/badge/Swift-3.1-brightgreen.svg" alt="Language" />
+        <img src="https://img.shields.io/badge/Swift-4.0-brightgreen.svg" alt="Language" />
     </a>
     <a href="https://raw.githubusercontent.com/shial4/SLChat/master/LICENSE">
         <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License" />
@@ -22,7 +22,7 @@ SLChat is a simple extension for Kitura-WebSocket. Allows you to integrate chat 
 
 Add the following dependency to your `Package.swift` file:
 ```swift
-.Package(url:"https://github.com/shial4/SLChat.git", majorVersion: 0, minor: 1)
+.package(url: "https://github.com/shial4/SLChat.git", from: "0.1.1"),
 ```
 
 ## 💊 Usage
